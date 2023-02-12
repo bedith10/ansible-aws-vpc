@@ -86,4 +86,13 @@
         cidr: "{{PrivSub3Cidr}}"
         resource_tags:
           Name: vprofile-privsub3
-      register: privsub3_out    
+      register: privsub3_out  
+
+    - name: Create Internet Gateway setup
+      ec2_vpc_subnet:
+        vpc_id: "{{vpcout.vpc.id}}"
+        region: "{{region}}"
+        state: "{{ state }}"
+        resource_tags:
+          Name: vprofile-IGW
+      register: igw_out
